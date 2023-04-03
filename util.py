@@ -6,9 +6,9 @@ import sympy
 import zmq
 
 # SOCKET
-LOCAL_PORT = 4080
+LOCAL_PORT = 4081
 SERVER_HOST = "localhost"
-SERVER_PORT = 4080
+SERVER_PORT = 4081
 
 
 class Socket:
