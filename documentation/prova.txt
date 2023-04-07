@@ -1,0 +1,43 @@
+// Yao's protocol with an n-bit input - Alice's procedure
+function AliceProtocol(x, C):
+    // Step 1: Agree on a cryptographic protocol for secure communication
+    protocol = SSL/TLS/SSH
+
+    // Step 2: Agree on a garbling scheme for the circuit C
+    garbled_C = garble(C)
+
+    // Step 3: Alice generates garbled inputs and performs oblivious transfer with Bob
+    garbled_inputs = []
+    for i in range(n):
+        garbled_input = garble_input(x[i])
+        garbled_inputs.append(garbled_input)
+        garbled_input_y = oblivious_transfer(garbled_input, y[i])
+        garbled_inputs_y.append(garbled_input_y)
+
+    // Step 4: Alice garbles the circuit with her input x and sends it to Bob
+    garbled_C_x = garble_circuit(garbled_C, garbled_inputs)
+    send(garbled_C_x, protocol)
+
+    // Step 5: Terminate the protocol
+    return
+
+
+
+// Yao's protocol with an n-bit input - Bob's procedure
+function BobProtocol(y, C):
+    // Step 1: Agree on a cryptographic protocol for secure communication
+    protocol = SSL/TLS/SSH
+
+    // Step 2: Receive the garbled circuit from Alice over the secure communication channel
+    garbled_C_x = receive(protocol)
+
+    // Step 3: Bob evaluates the garbled circuit with his input y and sends the garbled output to Alice
+    garbled_inputs_y = []
+    for i in range(n):
+        garbled_input_y = oblivious_transfer_receive(y[i])
+        garbled_inputs_y.append(garbled_input_y)
+    garbled_output = evaluate(garbled_C_x, garbled_inputs_y)
+    send(garbled_output, protocol)
+
+    // Step 4: Terminate the protocol
+    return
