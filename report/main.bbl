@@ -1,0 +1,57 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{HWJ{\etalchar{+}}23}
+
+\bibitem[ASR15]{Mining}
+Yousra Abdul Alsahib~S. Aldeen, Mazleena Salleh, and Mohammad~Abdur Razzaque.
+\newblock A comprehensive review on privacy preserving data mining.
+\newblock {\em SpringerPlus}, 4(1):694, 2015.
+
+\bibitem[BS08]{Publishing}
+Justin Brickell and Vitaly Shmatikov.
+\newblock The cost of privacy: Destruction of data-mining utility in anonymized
+  data publishing.
+\newblock In {\em Proceedings of the ACM SIGKDD International Conference on
+  Knowledge Discovery and Data Mining}, pages 70--78, 2008.
+
+\bibitem[BTW12]{Analysis}
+Dan Bogdanov, Riivo Talviste, and Jan Willemson.
+\newblock Deploying secure multi-party computation for financial data analysis.
+\newblock In Angelos~D. Keromytis, editor, {\em Financial Cryptography and Data
+  Security}, pages 57--64, Berlin, Heidelberg, 2012. Springer Berlin
+  Heidelberg.
+
+\bibitem[DCCH21]{ScoringMining}
+Viani~B. Djeundje, Jonathan Crook, Raffaella Calabrese, and Mona Hamid.
+\newblock Enhancing credit scoring with alternative data.
+\newblock {\em Expert Systems with Applications}, 163:113766, 2021.
+
+\bibitem[HWJ{\etalchar{+}}23]{Scoring}
+Haoran He, Zhao Wang, Hemant Jain, Cuiqing Jiang, and Shanlin Yang.
+\newblock A privacy-preserving decentralized credit scoring method based on
+  multi-party information.
+\newblock {\em Decision Support Systems}, 166:113910, 2023.
+
+\bibitem[Rab81]{OT}
+Michael Rabin.
+\newblock How to exchange secrets with oblivious transfer.
+\newblock {\em IACR Cryptology ePrint Archive}, page 187, 01 1981.
+
+\bibitem[Yao82]{Yao82}
+Andrew~C. Yao.
+\newblock Protocols for secure computations.
+\newblock In {\em 23rd Annual Symposium on Foundations of Computer Science
+  (sfcs 1982)}, pages 160--164, 1982.
+
+\bibitem[Yao86]{Yao86}
+Andrew Chi-Chih Yao.
+\newblock How to generate and exchange secrets.
+\newblock {\em Proceedings of the 27th Annual Symposium on Foundations of
+  Computer Science}, pages 162--167, 1986.
+
+\bibitem[ZZZ{\etalchar{+}}19]{Applications}
+Chuan Zhao, Shengnan Zhao, Minghao Zhao, Zhenxiang Chen, Chong-Zhi Gao, Hongwei
+  Li, and Yu~an~Tan.
+\newblock Secure multi-party computation: Theory, practice and applications.
+\newblock {\em Information Sciences}, 476:357--372, 2019.
+
+\end{thebibliography}
