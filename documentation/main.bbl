@@ -3,12 +3,12 @@
 \bibitem[Aut23]{CRYPTO}
 Python~Cryptography Authority.
 \newblock cryptography.
-\newblock https://github.com/pyca/cryptography, 2023.
+\newblock \url{https://github.com/pyca/cryptography}, 2023.
 
 \bibitem[RR22]{GARBLED}
 Oliver Roques and Emmanuelle Risson.
-\newblock garbled.circuit.
-\newblock https://github.com/ojroques/garbled-circuit, 2022.
+\newblock garbled-circuit.
+\newblock \url{https://github.com/ojroques/garbled-circuit}, 2022.
 
 \bibitem[Yao86]{YAO}
 Andrew Chi-Chih Yao.

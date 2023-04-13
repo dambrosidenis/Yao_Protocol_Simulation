@@ -2,6 +2,7 @@
 \usepackage{graphicx} % for including figure 
 \usepackage{geometry} % geometry package for mentioning margin length
 \geometry{margin=3cm} %for setting margin; DON'T CHANGE THIS
+\usepackage{url}
 \usepackage{algorithmic}
 \usepackage[boxed]{algorithm2e} % the boxed option keeps the algorithm in a box in the pdf.
                                 % You can also use the option ruled or algoruled for a different output.
@@ -54,7 +55,7 @@ A general visual overview of a complete 8-bit adder that uses a half-adder and 7
 
 \section{Yao's protocol}
 
-Alice's role in Yao's protocol \cite{YAO} is to garble the circuit that computes $f$ using their private inputs $x$ and $y$, then send it over a secure communication channel to Bob. Garbling the circuit requires assigning random labels to both the input wires of her input $x$ and the output wires, then encrypting each gate's truth table using these labels as keys. Bob takes Alice's garbled circuit and evaluates it using both of his own inputs and Alice's, then sends the output in its current state back to Alice.
+Alice's role in Yao's protocol \cite{YAO} is to garble the circuit that computes the joint function $f(x,y)$ using their private inputs $x$ and $y$, then send it over a secure communication channel to Bob. Garbling the circuit requires assigning random labels to both the input wires of her input $x$ and the output wires, then encrypting each gate's truth table using these labels as keys. Bob takes Alice's garbled circuit and evaluates it using both of his own inputs and Alice's, then sends the output in its current state back to Alice.
 
 Alice's main responsibility is making sure that the circuit remains secure, without disclosing any private information about her private input $x$ to Bob.
 
