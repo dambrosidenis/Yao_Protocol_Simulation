@@ -146,12 +146,12 @@ def convert_to_binary_list(number, number_of_bits=8) :
             (optional; 8 by default)
 
     Returns:
-        A list containing the ordered digits of number's binary representation, as integers
+        A list containing the ordered digits of number's binary representation in two's-complement, as integers
     """
-    binary_representation = bin(abs(number))[2:].zfill(number_of_bits)
-    if number < 0 :
-        binary_representation = list(map(lambda c : '0' if c == '1' else '1', list(binary_representation)))
-        for i in range(number_of_bits) :
+    binary_representation = bin(abs(number))[2:].zfill(number_of_bits) # At first, convert the number as it was positive
+    if number < 0 : # If it's negative ...
+        binary_representation = list(map(lambda c : '0' if c == '1' else '1', list(binary_representation))) # ... first of all complement it ...
+        for i in range(number_of_bits) : # ... then increase by 1 its representation to obtain a valid two's complement encoding
             if binary_representation[~i] == '1' :
                 binary_representation[~i] = '0'
             else :
@@ -165,15 +165,15 @@ def convert_to_decimal(result):
     """Convert the circuit's output into a decimal number.
 
     Args:
-        result: An array containing the ordered binary digits of the computed result.
+        result: An array containing the ordered binary digits of the computed result as two's complement.
 
     Returns:
         The corrisponding value converted into decimal number.
     """
-    if result[0] == 1 :
+    if result[0] == 1 : # In this case we are dealing with a negative number, thus we must firstly complement it and then offset if by -1
         complemented_result = int("".join(list(map(lambda c : '0' if c == 1 else '1', result))), 2)
         return -complemented_result - 1
-    else :
+    else : # In this case we are dealing with a negative number, thus we can convert it straight away
         return int("".join([str(digit) for digit in result]),2)
 
 def save_results(result, output_path='./output.txt'):
