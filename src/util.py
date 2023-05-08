@@ -148,7 +148,16 @@ def convert_to_binary_list(number, number_of_bits=8) :
     Returns:
         A list containing the ordered digits of number's binary representation, as integers
     """
-    binary_representation = bin(number)[2:].zfill(number_of_bits)
+    binary_representation = bin(abs(number))[2:].zfill(number_of_bits)
+    if number < 0 :
+        binary_representation = list(map(lambda c : '0' if c == '1' else '1', list(binary_representation)))
+        for i in range(number_of_bits) :
+            if binary_representation[~i] == '1' :
+                binary_representation[~i] = '0'
+            else :
+                binary_representation[~i] = '1'
+                break
+        binary_representation = "".join(binary_representation)
     binary_list = list(map(int, list(binary_representation)))
     return binary_list
 
@@ -161,7 +170,11 @@ def convert_to_decimal(result):
     Returns:
         The corrisponding value converted into decimal number.
     """
-    return int(''.join([str(digit) for digit in result]),2)
+    if result[0] == 1 :
+        complemented_result = int("".join(list(map(lambda c : '0' if c == 1 else '1', result))), 2)
+        return -complemented_result - 1
+    else :
+        return int("".join([str(digit) for digit in result]),2)
 
 def save_results(result, output_path='./output.txt'):
     """Save the result of the protocol's execution into a file.
