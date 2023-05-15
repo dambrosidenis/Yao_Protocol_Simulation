@@ -159,6 +159,7 @@ def convert_to_binary_list(number, number_of_bits=8) :
                 break
         binary_representation = "".join(binary_representation)
     binary_list = list(map(int, list(binary_representation)))
+    print(binary_list)
     return binary_list
 
 def convert_to_decimal(result):
@@ -170,6 +171,7 @@ def convert_to_decimal(result):
     Returns:
         The corrisponding value converted into decimal number.
     """
+    print('result: ', result)
     if result[0] == 1 : # In this case we are dealing with a negative number, thus we must firstly complement it and then offset if by -1
         complemented_result = int("".join(list(map(lambda c : '0' if c == 1 else '1', result))), 2)
         return -complemented_result - 1
@@ -229,11 +231,12 @@ def generate_circuit(n, name, id) :
     Returns:
         A dictionary encoding an n-bit adder according to the specification of the garbled-circuit library.
     """
+
     circuit = {
         'id' : f'{n}-bit {id}',
         'alice' : ([1] + [5+7*i for i in range(n-1)])[::-1],
         'bob' : ([2] + [6+7*i for i in range(n-1)])[::-1],
-        'out' : ([3] + [8+7*i for i in range(n-1)])[::-1],
+        'out' : ([3] + [8+7*i for i in range(n-1)] + [11+7*(n-1)])[::-1],
         'gates' : [
             { 'id' : 3, 'type' : 'XOR', 'in' : [1,2] },
             { 'id' : 4, 'type' : 'AND', 'in' : [1,2] }
@@ -243,11 +246,17 @@ def generate_circuit(n, name, id) :
             { 'id' : 9+7*i, 'type' : 'AND', 'in' : [4+7*i, 7+7*i] },
             { 'id' : 10+7*i, 'type' : 'AND', 'in' : [5+7*i, 6+7*i] },
             { 'id' : 11+7*i, 'type' : 'OR', 'in' : [9+7*i, 10+7*i] }]
-        for i in range(n-2) ])) + [
-            { 'id' : 7+7*(n-2), 'type' : 'XOR', 'in' : [5+7*(n-2), 6+7*(n-2)] },
-            { 'id' : 8+7*(n-2), 'type' : 'XOR', 'in' : [4+7*(n-2), 7+7*(n-2)] }
+        for i in range(n-1) ])) + [
+            { 'id' : 5+7*(n-1), 'type' : 'XOR', 'in' : [7*(n-1)-3, 4+7*(n-1)] },
+            { 'id' : 6+7*(n-1), 'type' : 'AND', 'in' : [5+7*(n-1), 4+7*(n-1)] },
+            { 'id' : 7+7*(n-1), 'type' : 'XOR', 'in' : [7*(n-1)-3, 4+7*(n-1)] },
+            { 'id' : 8+7*(n-1), 'type' : 'NOT', 'in' : [4+7*(n-1)] },
+            { 'id' : 9+7*(n-1), 'type' : 'NOT', 'in' : [7+7*(n-1)] },
+            { 'id' : 10+7*(n-1), 'type' : 'AND', 'in' : [9+7*(n-1), 8+7*(n-1)] },
+            { 'id' : 11+7*(n-1), 'type' : 'OR', 'in' : [6+7*(n-1), 10+7*(n-1)] }
         ]
     }
+
     return { 'name' : name, 'circuits' : [circuit] }
 
 def generate_and_save_circuit(path='./adder.json', number_of_bits=8, name='adder', id='adder'):
@@ -268,7 +277,7 @@ def generate_and_save_circuit(path='./adder.json', number_of_bits=8, name='adder
     """
     circuit = generate_circuit(number_of_bits, name, id )
     with open(path, 'w') as f :
-        json.dump(circuit, f)
+        json.dump(circuit, f, indent=1)
 
 # HELPER FUNCTIONS
 def parse_json(json_path):
