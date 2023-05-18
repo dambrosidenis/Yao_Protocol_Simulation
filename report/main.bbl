@@ -6,24 +6,18 @@ Yousra Abdul Alsahib~S. Aldeen, Mazleena Salleh, and Mohammad~Abdur Razzaque.
 \newblock A comprehensive review on privacy preserving data mining.
 \newblock {\em SpringerPlus}, 4(1):694, 2015.
 
-\bibitem[BS08]{Publishing}
-Justin Brickell and Vitaly Shmatikov.
-\newblock The cost of privacy: Destruction of data-mining utility in anonymized
-  data publishing.
-\newblock In {\em Proceedings of the ACM SIGKDD International Conference on
-  Knowledge Discovery and Data Mining}, pages 70--78, 2008.
-
-\bibitem[BTW12]{Analysis}
-Dan Bogdanov, Riivo Talviste, and Jan Willemson.
-\newblock Deploying secure multi-party computation for financial data analysis.
-\newblock In Angelos~D. Keromytis, editor, {\em Financial Cryptography and Data
-  Security}, pages 57--64, Berlin, Heidelberg, 2012. Springer Berlin
-  Heidelberg.
-
 \bibitem[DCCH21]{ScoringMining}
 Viani~B. Djeundje, Jonathan Crook, Raffaella Calabrese, and Mona Hamid.
 \newblock Enhancing credit scoring with alternative data.
 \newblock {\em Expert Systems with Applications}, 163:113766, 2021.
+
+\bibitem[DDN{\etalchar{+}}17]{Benchmarking}
+Ivan Damgard, Kasper Damgard, Kurt Nielsen, Peter~Sebastian Nordholt, and Tomas
+  Toft.
+\newblock Confidential benchmarking based on multiparty computation.
+\newblock In Jens Grossklags and Bart Preneel, editors, {\em Financial
+  Cryptography and Data Security}, pages 169--187. Springer Berlin Heidelberg,
+  2017.
 
 \bibitem[HWJ{\etalchar{+}}23]{Scoring}
 Haoran He, Zhao Wang, Hemant Jain, Cuiqing Jiang, and Shanlin Yang.
@@ -43,7 +37,7 @@ Andrew~C. Yao.
   (sfcs 1982)}, pages 160--164, 1982.
 
 \bibitem[Yao86]{Yao86}
-Andrew Chi-Chih Yao.
+Andrew~C. Yao.
 \newblock How to generate and exchange secrets.
 \newblock {\em Proceedings of the 27th Annual Symposium on Foundations of
   Computer Science}, pages 162--167, 1986.
