@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.7.15)  20 MAY 2023 10:40
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.7.15)  20 MAY 2023 11:07
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -558,7 +558,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: practicalapplications.png Graphic file (type png)
 <use practicalapplications.png>
 Package pdftex.def Info: practicalapplications.png  used on input line 106.
-(pdftex.def)             Requested size: 225.84375pt x 179.9778pt.
+(pdftex.def)             Requested size: 266.49396pt x 212.37938pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
@@ -574,7 +574,7 @@ Here is how much of TeX's memory you used:
  35855 multiletter control sequences out of 15000+600000
  477024 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 99i,6n,104p,1211b,393s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 99i,6n,104p,1220b,393s stack positions out of 10000i,1000n,20000p,200000b,200000s
 </usr/
 local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/l
 ocal/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/lo
@@ -585,7 +585,7 @@ al/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/local
 exlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/tex
 live/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texl
 ive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb>
-Output written on main.pdf (5 pages, 262675 bytes).
+Output written on main.pdf (5 pages, 262680 bytes).
 PDF statistics:
  71 PDF objects out of 1000 (max. 8388607)
  43 compressed objects within 1 object stream
