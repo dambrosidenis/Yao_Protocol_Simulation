@@ -1,8 +1,8 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.7.15)  8 APR 2023 10:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.7.15)  24 MAY 2023 16:01
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**main.tex
+**main
 (./main.tex
 LaTeX2e <2021-11-15> patch level 1
 L3 programming layer <2022-02-24>
@@ -244,53 +244,62 @@ Package pdftex.def Info: fulladder.png  used on input line 41.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<adder.png, id=4, 1312.905pt x 347.2975pt>
-File: adder.png Graphic file (type png)
-<use adder.png>
-Package pdftex.def Info: adder.png  used on input line 50.
-(pdftex.def)             Requested size: 443.57848pt x 117.33768pt.
 [1
 
 {/usr/local/texlive/2022/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
-[2 <./halfadder.png> <./fulladder.png> <./adder.png>] [3] [4] [5]
-Overfull \hbox (1.60512pt too wide) in paragraph at lines 154--155
+<adder.png, id=16, 1248.665pt x 321.2pt>
+File: adder.png Graphic file (type png)
+<use adder.png>
+Package pdftex.def Info: adder.png  used on input line 50.
+(pdftex.def)             Requested size: 443.57848pt x 114.10277pt.
+
+[2 <./halfadder.png> <./fulladder.png> <./adder.png>]
+<overflow.png, id=24, 1682.285pt x 515.9275pt>
+File: overflow.png Graphic file (type png)
+<use overflow.png>
+Package pdftex.def Info: overflow.png  used on input line 58.
+(pdftex.def)             Requested size: 221.78923pt x 68.01761pt.
+ [3 <./overflow.png>]
+[4] [5]
+Overfull \hbox (1.60512pt too wide) in paragraph at lines 160--161
 []\OT1/cmr/m/n/12 In an-other ter-mi-nal, run the script as Al-ice by ex-e-cut-
 ing \OT1/cmtt/m/n/12 python3 main.py alice\OT1/cmr/m/n/12 . 
  []
 
-
-Overfull \hbox (4.26247pt too wide) in paragraph at lines 166--167
+[6]
+Overfull \hbox (4.26247pt too wide) in paragraph at lines 172--173
 []\OT1/cmr/m/n/12 Finally, we can se the log-ging level through the \OT1/cmtt/m
 /n/12 --loglevel \OT1/cmr/m/n/12 flag (ex-am-ple: \OT1/cmtt/m/n/12 python3
  []
 
-(./main.bbl [6]) [7] (./main.aux) ) 
+(./main.bbl) [7] (./main.aux) ) 
 Here is how much of TeX's memory you used:
- 3181 strings out of 478268
- 52053 string characters out of 5846347
- 363685 words of memory out of 5000000
- 21382 multiletter control sequences out of 15000+600000
+ 3191 strings out of 478268
+ 52204 string characters out of 5846347
+ 364693 words of memory out of 5000000
+ 21391 multiletter control sequences out of 15000+600000
  474973 words of font info for 47 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,13n,62p,710b,423s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{/usr/local/texlive/2022/texmf-dist/fonts/en
-c/dvips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/typ
-e1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type
-1/public/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1
-/public/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/p
-ublic/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/pub
-lic/amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/publi
-c/amsfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/
-amsfonts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/ams
-fonts/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmti12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmtt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/
-sfrm1200.pfb>
-Output written on main.pdf (7 pages, 310373 bytes).
+ 55i,13n,62p,1331b,423s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{/usr/local/texlive/2022/texmf-dist/fonts/enc/dv
+ips/cm-super/cm-super-ts1.enc}</usr/local/texlive/2022/texmf-dist/fonts/type1/p
+ublic/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmmi12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/pub
+lic/amsfonts/cm/cmmi8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmr10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmr12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/am
+sfonts/cm/cmr17.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmr7.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmsy10.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mti12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+tt12.pfb></usr/local/texlive/2022/texmf-dist/fonts/type1/public/cm-super/sfrm12
+00.pfb>
+Output written on main.pdf (7 pages, 351084 bytes).
 PDF statistics:
- 96 PDF objects out of 1000 (max. 8388607)
- 56 compressed objects within 1 object stream
+ 103 PDF objects out of 1000 (max. 8388607)
+ 59 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

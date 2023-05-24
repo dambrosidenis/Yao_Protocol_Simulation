@@ -23,7 +23,7 @@ This technical report presents a practical implementation of Yao's protocol, a t
 
 \section{The circuit}
 
-By default, the script will simulate the execution of an 8-bit adder \footnote{Note that the number of bits of the representation can be changed as a command-line argument}. Before proceding with the explaination of the algorithm, it would be a good idea to explain a little futher how this logical architecture works.
+By default, the script will simulate the execution of an 8-bit adder \footnote{Note that the number of bits of the representation can be changed as a command-line argument} with an additional component that prevents the risk of overflow. Before proceding with the explaination of the algorithm, it would be a good idea to explain a little futher how the base logical architecture works.
 An 8-bit logical adder is a digital circuit that can add two 8-bit binary numbers together. It consists of a half-adder and seven full adder subcircuits connected in cascading fashion:
 \begin{itemize}
   \item A half adder is a logical circuit that performs the addition of two single-bit binary numbers. The circuit consists of an XOR gate, that produces the equivalent sum bit, and an AND gate, which computes the carry bit. A diagram of such component is illustrated in figure \ref{fig:halfadder}
@@ -51,7 +51,13 @@ A general visual overview of a complete 8-bit adder that uses a half-adder and 7
   \caption{8-bit adder diagram}\label{fig:adder}
 \end{figure}
 
+An n-bit adder is generally used to sum two $n$-bit values into an $n$-bit number. In our case, since (as we will see in the following sections) the two parties cannot know the other partecipant's value, the computation could possibly lead to overflow. A simple trick to avoid this issue is to take into consideration both the last sum bit and the most significant input bits (thus bits $A8$, $B8$ and $S8$ in the above figure \ref{fig:adder}) and to use this information to extend the representation of the result into an $n+1$-bit value. The specification of this project requires the implementation to work with integers (positive and negative numbers alike), thus we need to ensure that the last bit does not accidentally flip the sign when dealing with 2's complement arithmetic. In order to do so, all we have to do is to check the if the last two input bits match: if they match and are both equal to $1$, we are summing two negative numbers, thus $S9$ will be $1$. Similarly, if $S8$ is equal to $1$ and the input bits are different, we are dealing again with a negative number, so $S9$ must be $1$. On the other hand, in the other cases, $S9$ will be set to $0$ since we are clearly dealing with positive numbers. The circuit used to compute this check is summarized in figure \ref{fig:overflow}.
 
+\begin{figure}[t]
+  \centering
+  \includegraphics[width=0.5\textwidth]{overflow.png}
+  \caption{Diagram of the if-else circuit for the 9$^{\textrm{th}}$ bit after an 8-bit adder.}\label{fig:overflow}
+\end{figure}
 
 \section{Yao's protocol}
 
@@ -118,11 +124,11 @@ Note that in this pseudocode we assume 3 things:
 \end{enumerate}
 
 \section{Project structure}
-My implementation for this project is heavily inspired by the \texttt{garbled-circuit} \cite{GARBLED} public library:
+My implementation for this project is heavily inspired by the \texttt{garbled-circuit} \cite{GARBLED} public library. In the following list, I will summarize the features of each file, but, for the sake of briefness, I will focus in particular only on the functions added to the repository.
 
 \begin{itemize}
-  \item \texttt{main.py}: this file actually represents the "entry point" to our program: it collects the command line arguments and creates the correct objects for the execution of the protocol according to the options provided as input. After the istantiation, it also starts the exchange and (if run as Alice) checks the results.
-  \item \texttt{parties.py}: this module contains the implementation of the algorithms described in the previous section: following the class hierarchy defined in the \texttt{main.py} file original repository, it provides the classes needed for both Alice's and Bob's procedures. According to the role we want to impersonate, we have to instantiate and call these objects in a slighty different way:
+  \item \texttt{main.py}: this file actually represents the "entry point" to our program: it collects the command line arguments provided by the user and creates the correct objects for the execution of the protocol according to the options provided as input. After the istantiation, it also starts the exchange and (if run as Alice) checks the results.
+  \item \texttt{parties.py}: this module contains the implementation of the algorithms described in the previous section: following the class hierarchy defined in the \texttt{main.py} file of the original repository, it provides the classes needed for both Alice's and Bob's procedures. According to the role we want to impersonate, we have to instantiate and call these objects in a slighty different way:
   \begin{itemize}
     \item \texttt{Alice} is initialized by passing the paths to a JSON file containing the encoding of a circuit according to the \texttt{garbled-circuit} repository, the input file and the output file. After initialisation, this party can begin the exchange (assuming we have already created correctly an instance of \texttt{Bob} listening on the same port) by calling its method \texttt{start()}.
     \item \texttt{Bob} is initialised by providing the path to an input file. After creation, it can check for incoming connections through its \texttt{listen()} method.
@@ -132,9 +138,9 @@ My implementation for this project is heavily inspired by the \texttt{garbled-ci
   \item \texttt{ot.py}: this module implements the logic needed for the oblivious transfer procedure. No changes were done to the original file of the \texttt{garbled-circuit} library.
   \item \texttt{util.py}: this module provides miscellaneous additional functionalities to the rest of the program to streamline the designing procedure of the more complex functions. Most of the code available within this file is directly taken from the corrispondent module of the aforementioned public repository. In addition, I included the following procedures:
   \begin{itemize}
-    \item \texttt{read\_input\_data}, that takes as input the path to an input file and reads and aggregates its content to obtain the actual value to compute the protocol on. Although my implementation computes the sum of the elements of two sets, I made this function modular so that the aggregation procedure could be easily swapepd for another set-to-integer function (for example with a maximum o a minimum).
-    \item \texttt{convert\_to\_binary\_list}, which takes the value computed through the previous function and maps it into the corresponding circuit input. Note that also this function is parametrized on the number of bits used for the representation, so anyone could theoretically change the size of the circuit and of the binary representation pretty easily by modifying the default values.
-    \item \texttt{convert\_to\_decimal}, that decodes the circuit's output into a decimal result.
+    \item \texttt{read\_input\_data}, that takes as input the path to an input file and reads and aggregates its content to obtain the actual value to compute the protocol on. Although my implementation computes the sum of the elements of two sets, I made this function modular so that the aggregation procedure could be easily swapped for another set-to-integer function (for example a maximum or a minimum).
+    \item \texttt{convert\_to\_binary\_list}, which takes the integer value computed through the previous function and maps it into the corresponding circuit input in two's complement. Note that also this function is parametrized on the number of bits used for the representation, so anyone could theoretically change the size of the circuit and of the binary representation pretty easily by modifying the default values.
+    \item \texttt{convert\_to\_decimal}, that decodes the circuit's output into an integer result.
     \item \texttt{save\_results}, which dumps the value computed through the previous function into an output file.
     \item \texttt{verify}, that computes locally the sum of the aggregated values (by reading the corresponding input files) and checks that result is coherent with the content of the output file.
     \item \texttt{generate\_circuit}, which allows for the procedural generation of the circuit according to the library's JSON specification. Again, also this function is parametrized on the size of the input, but it is invoked with a default value of 8 bits.
@@ -165,6 +171,8 @@ My implementation includes some additional command-line options for additional f
   \item The \texttt{--bits} flag allows us to specify the size of the circuit's input and the data representation (example: \texttt{python3 main.py bob --bits 12}). Note that this option \textbf{must} be mirrored on both terminals.
   \item Finally, we can se the logging level through the \texttt{--loglevel} flag (example: \texttt{python3 main.py alice -loglevel info}).
 \end{itemize}
+
+Note also that the program will raise an Exception if the sum of the numbers provided in the input file exceeds the limits of their binary representation. In particular, since the exchange works with signed integers, the input values for an $n$-size circuit must belong to the interval $[-2^{n-1}, 2^{n-1}-1]$. 
 
 \bibliographystyle{alpha}
 \bibliography{references}
