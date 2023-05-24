@@ -138,7 +138,7 @@ def read_input_data(input_data_path, aggregator_func=sum, separator=' ') :
     return aggregator_func(map(int, input_data.split(separator)))
             
 def convert_to_binary_list(number, number_of_bits=8) :
-    """Convert an integer into a list containing the digits of its binary representation, padded with zeros to a given size.
+    """Convert an integer into a list containing the digits of its number_of_bits binary representation. Negative numbers are converted into 2's complement. Throws an error if the number is >= 2^(number_of_bits-1) or < -(2^(number_of_bits-1)) because of overflow (example: for number_of_bits = 8, available values would be all integers between -128 and 127)
 
     Args:
         number: The integer to convert.
@@ -148,6 +148,8 @@ def convert_to_binary_list(number, number_of_bits=8) :
     Returns:
         A list containing the ordered digits of number's binary representation in two's-complement, as integers
     """
+    if (number < -(2**(number_of_bits-1))) or (number >= 2**(number_of_bits-1)) :
+        raise Exception("Overflow error! Please change the size of the circuit and reload program!")
     binary_representation = bin(abs(number))[2:].zfill(number_of_bits) # At first, convert the number as it was positive
     if number < 0 : # If it's negative ...
         binary_representation = list(map(lambda c : '0' if c == '1' else '1', list(binary_representation))) # ... first of all complement it ...
@@ -159,7 +161,6 @@ def convert_to_binary_list(number, number_of_bits=8) :
                 break
         binary_representation = "".join(binary_representation)
     binary_list = list(map(int, list(binary_representation)))
-    print(binary_list)
     return binary_list
 
 def convert_to_decimal(result):
@@ -171,7 +172,6 @@ def convert_to_decimal(result):
     Returns:
         The corrisponding value converted into decimal number.
     """
-    print('result: ', result)
     if result[0] == 1 : # In this case we are dealing with a negative number, thus we must firstly complement it and then offset if by -1
         complemented_result = int("".join(list(map(lambda c : '0' if c == 1 else '1', result))), 2)
         return -complemented_result - 1
@@ -236,7 +236,7 @@ def generate_circuit(n, name, id) :
         'id' : f'{n}-bit {id}',
         'alice' : ([1] + [5+7*i for i in range(n-1)])[::-1],
         'bob' : ([2] + [6+7*i for i in range(n-1)])[::-1],
-        'out' : ([3] + [8+7*i for i in range(n-1)] + [11+7*(n-1)])[::-1],
+        'out' : ([3] + [8+7*i for i in range(n-1)] + [9+7*(n-1)])[::-1],
         'gates' : [
             { 'id' : 3, 'type' : 'XOR', 'in' : [1,2] },
             { 'id' : 4, 'type' : 'AND', 'in' : [1,2] }
@@ -247,16 +247,13 @@ def generate_circuit(n, name, id) :
             { 'id' : 10+7*i, 'type' : 'AND', 'in' : [5+7*i, 6+7*i] },
             { 'id' : 11+7*i, 'type' : 'OR', 'in' : [9+7*i, 10+7*i] }]
         for i in range(n-1) ])) + [
-            { 'id' : 5+7*(n-1), 'type' : 'XOR', 'in' : [7*(n-1)-3, 4+7*(n-1)] },
-            { 'id' : 6+7*(n-1), 'type' : 'AND', 'in' : [5+7*(n-1), 4+7*(n-1)] },
-            { 'id' : 7+7*(n-1), 'type' : 'XOR', 'in' : [7*(n-1)-3, 4+7*(n-1)] },
-            { 'id' : 8+7*(n-1), 'type' : 'NOT', 'in' : [4+7*(n-1)] },
-            { 'id' : 9+7*(n-1), 'type' : 'NOT', 'in' : [7+7*(n-1)] },
-            { 'id' : 10+7*(n-1), 'type' : 'AND', 'in' : [9+7*(n-1), 8+7*(n-1)] },
-            { 'id' : 11+7*(n-1), 'type' : 'OR', 'in' : [6+7*(n-1), 10+7*(n-1)] }
+            { 'id' : 5+7*(n-1), 'type' : 'XOR', 'in' : [7*(n-1)-2, 7*(n-1)-1] },
+            { 'id' : 6+7*(n-1), 'type' : 'AND', 'in' : [5+7*(n-1), 1+7*(n-1)] },
+            { 'id' : 7+7*(n-1), 'type' : 'NOT', 'in' : [5+7*(n-1)] },
+            { 'id' : 8+7*(n-1), 'type' : 'AND', 'in' : [7+7*(n-1), 7*(n-1)-1] },
+            { 'id' : 9+7*(n-1), 'type' : 'OR', 'in' : [6+7*(n-1), 8+7*(n-1)] }
         ]
     }
-
     return { 'name' : name, 'circuits' : [circuit] }
 
 def generate_and_save_circuit(path='./adder.json', number_of_bits=8, name='adder', id='adder'):

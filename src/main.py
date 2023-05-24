@@ -29,7 +29,7 @@ def main(
         alice.start()
         result = util.verify(alice_data=alice_input_path, bob_data=bob_input_path, output_data=output_path)
         if result :
-            print("Protocol succesfully executed!")
+            print("Protocol successfully executed!")
         else :
             print("Unsuccessful Execution. Check input and output files to better understand what happened")
     elif party == "bob":
@@ -48,7 +48,6 @@ if __name__ == '__main__':
         "error": logging.ERROR,
         "critical": logging.CRITICAL
     }
-
     parser = argparse.ArgumentParser(description="Run Yao protocol.")
     parser.add_argument("party",
                         choices=["alice", "bob",],

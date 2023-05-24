@@ -99,7 +99,7 @@ class Alice(YaoGarbler):
         int_result = util.convert_to_decimal([result[w] for w in outputs])
         util.save_results(int_result, output_path=self.output_path)
         print(f'Alice\'s input aggregated value is {self.data}\n')
-        print('Computation completed, all the information are in the file.')
+        print(f'Computation completed, all the information are in the output file {self.output_path}.')
 
     def _get_encr_bits(self, pbit, key0, key1):
         return ((key0, 0 ^ pbit), (key1, 1 ^ pbit))
@@ -119,7 +119,7 @@ class Bob:
     def __init__(self, input_data_path, number_of_bits, oblivious_transfer=True):
         self.socket = util.EvaluatorSocket()
         self.ot = ot.ObliviousTransfer(self.socket, enabled=oblivious_transfer)
-        self.data = util.read_input_data(input_data_path)
+        self.data_path = input_data_path
         self.num = number_of_bits
 
     def listen(self):
@@ -142,14 +142,15 @@ class Bob:
         circuit, pbits_out = entry["circuit"], entry["pbits_out"]
         garbled_tables = entry["garbled_tables"]
         b_wires = circuit.get("bob", [])  # list of Bob's wires
+        data = util.read_input_data(self.data_path)
 
         print(f"Received {circuit['id']}")
 
-        bits_b = util.convert_to_binary_list(self.data, number_of_bits=self.num)
+        bits_b = util.convert_to_binary_list(data, number_of_bits=self.num)
         # Create dict mapping each wire of Bob to Bob's input
         b_inputs_clear = {
             b_wires[i]: bits_b[i]
             for i in range(len(b_wires))
         }
-        print(f'Bob\'s input aggregated value is {self.data}\n')
+        print(f'Bob\'s input aggregated value is {data}\n')
         self.ot.send_result(circuit, garbled_tables, pbits_out, b_inputs_clear)
