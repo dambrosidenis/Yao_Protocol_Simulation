@@ -1,4 +1,4 @@
-# Yao's Garbled Circuit Protocol for Secure Multi-Party Computation
+# Yao's Garbled Circuit Protocol: an Implementation
 
 GitHub repository for an implementation of Yao's Garbled Circuit protocol for Secure Multi-Party Computation (SMPC) with an 8-bit adder as logical circuit. This repository includes all necessary files for running a local simulation of the protocol, including the source code, a detailed documentation, and a report that analyzes some possible real-world applications of this protocol.
 

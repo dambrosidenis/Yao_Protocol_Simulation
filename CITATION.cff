@@ -1,0 +1,10 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+authors:
+- family-names: "D'Ambrosi"
+  given-names: "Denis"
+  orcid: https://orcid.org/0009-0001-2275-6496
+title: "Yao's Garbled Circuit Protocol: an Implementation"
+version: 1.0.0
+date-released: 2023-04-03
+url: "https://github.com/dambrosidenis/Yao_Protocol_Simulation"
