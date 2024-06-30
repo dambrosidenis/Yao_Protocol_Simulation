@@ -9,7 +9,7 @@ logging.basicConfig(format="[%(levelname)s] %(message)s",
 
 def main(
     party,
-    circuit_path="./adder.json",
+    circuit_path="./circuit.json",
     alice_input_path="./alice_input.txt",
     bob_input_path="./bob_input.txt",
     output_path='./output.txt',
@@ -53,7 +53,7 @@ if __name__ == '__main__':
                         choices=["alice", "bob",],
                         help="the yao party to run")
     parser.add_argument("--circuit",
-                        default="./adder.json",
+                        default="./circuit.json",
                         help="the JSON circuit file for alice and local tests")
     parser.add_argument("--no-oblivious-transfer",
                         action="store_true",

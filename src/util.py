@@ -256,12 +256,12 @@ def generate_circuit(n, name, id) :
     }
     return { 'name' : name, 'circuits' : [circuit] }
 
-def generate_and_save_circuit(path='./adder.json', number_of_bits=8, name='adder', id='adder'):
+def generate_and_save_circuit(path='./circuit.json', number_of_bits=8, name='adder', id='adder'):
     """Generate an adder circuit and save it to file.
 
     Args:
         path: A string containing the path for the file to save the circuit to.
-            (optional; './adder.json' by default)
+            (optional; './circuit.json' by default)
         number_of_bits: (optional) An integer indicating the size of the input for the circuit (for each party).
             (optional; 8 by default)
         name: (optional) A string containing the name of the circuit.
