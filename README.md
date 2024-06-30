@@ -105,7 +105,14 @@ The `src/` directory contains the source code and input files for the implementa
 If you use this work in your research, please cite it as follows:
 
 ```bash
-A
+@software{D_Ambrosi_Yao_s_Garbled_Circuit_2023,
+    author = {D'Ambrosi, Denis},
+    month = apr,
+    title = {{Yao's Garbled Circuit Protocol: an Implementation}},
+    url = {https://github.com/dambrosidenis/Yao_Protocol_Simulation},
+    version = {1.0.0},
+    year = {2023}
+}
 ```
 
 ## License
